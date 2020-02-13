@@ -15,7 +15,7 @@ var isIe = (/MSIE/i.test(navigator.userAgent)) || (/Trident.*rv\:11\./i.test(nav
 var scrollSensitivitySetting = 30; //Increase/decrease this number to change sensitivity to trackpad gestures (up = less sensitive; down = more sensitive)
 var slideDurationSetting = 600; //Amount of time for which slide is "locked"
 var currentSlideNumber = 0;
-var totalSlideNumber = 3
+var totalSlideNumber = 4;
 
 // ------------- DETERMINE DELTA/SCROLL DIRECTION ------------- //
 function wheelScroll(evt) {
@@ -102,6 +102,20 @@ window.addEventListener("touchend", function(e) {
 function nextItem() {
   var $previousSlide = $(".background").eq(currentSlideNumber - 1);
   $previousSlide.removeClass("up-scroll").addClass("down-scroll");
+
+  if (currentSlideNumber==1){
+    setTimeout(function(){
+      $('#box2').fadeIn();
+    },700)
+  }
+  if (currentSlideNumber==2){
+    setTimeout(function(){
+      $('#cake').fadeIn();
+    },700)
+    setTimeout(function(){
+      $('#cake2').fadeIn();
+    },1000)
+  }
 }
 
 function previousItem() {
@@ -113,12 +127,11 @@ function previousItem() {
 
 $(document).ready(function() {
   animation()
-}, 2000);
+}, 3000);
 
 $(document).ready(function(){
 
   var containerTop = $('.container').offset().top;
-
 
   $(window).scroll(function(){
       var hei = $(document).scrollTop();
